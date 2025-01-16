@@ -6,10 +6,6 @@ const updatedJsonFiles = readDirectory("data/updatedJson");
 const originalJson = JSON.parse(fs.readFileSync(`data/originalJson/${originalJsonFiles[0]}`, "utf8"));
 const updatedJson = JSON.parse(fs.readFileSync(`data/updatedJson/${updatedJsonFiles[0]}`, "utf8"));
 
-if (originalJson.Methods.length !== updatedJson.Methods.length) {
-    throw new Error("Original and Updated JSON files have different number of Methods");
-}
-
 updatedJson.Methods = updatedJson.Methods.map(updateMethods);
 
 fs.writeFileSync("./data/fixedJson/output.json", JSON.stringify(updatedJson, null, 4));
@@ -27,7 +23,7 @@ function readDirectory(directory) {
 
 function updateMethods(method) {
     const originalMethod = originalJson.Methods.find(findMethod, method);
-    if (originalJsonFiles == null) {
+    if (originalMethod == null) {
         throw new Error(`Unable to find ${method.Name}`);
     }
 
