@@ -24,7 +24,8 @@ function readDirectory(directory) {
 function updateMethods(method) {
     const originalMethod = originalJson.Methods.find(findMethod, method);
     if (originalMethod == null) {
-        throw new Error(`Unable to find ${method.Name}`);
+        console.log(`Unable to find ${method.Name} in the original JSON file, skipping...`);
+        return method;
     }
 
     checkCustomFieldsLookupMethodName("RequestFormat");
