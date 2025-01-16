@@ -10,9 +10,9 @@ if (originalJson.Methods.length !== updatedJson.Methods.length) {
     throw new Error("Original and Updated JSON files have different number of Methods");
 }
 
-const fixedJson = updatedJson.Methods.map(updateMethods);
+updatedJson.Methods = updatedJson.Methods.map(updateMethods);
 
-fs.writeFileSync("./data/fixedJson/output.json", JSON.stringify(fixedJson, null, 4));
+fs.writeFileSync("./data/fixedJson/output.json", JSON.stringify(updatedJson, null, 4));
 
 function readDirectory(directory) {
     const files = fs.readdirSync(directory).filter((file) => file.endsWith(".json"));
